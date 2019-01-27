@@ -1,17 +1,16 @@
 <template>
-    <ul class="list">
-        <li class="item"
-            v-for="item of letters"
-            :key="item"
-            :ref="item"
-            @click="handleLetterClick"
-            @touchstart="handleTouchStart"
-            @touchmove="handleTouchMove"
-            @touchend="handleTouchEnd"
-        >
-          {{item}}
-        </li>
-    </ul>
+  <ul class="list">
+    <li
+      class="item"
+      v-for="item of letters"
+      :key="item"
+      :ref="item"
+      @click="handleLetterClick"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+    >{{item}}</li>
+  </ul>
 </template>
 
 <script>
@@ -69,18 +68,19 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~style/varibles.styl'
-  .list
-    display: flex
-    flex-direction: column
-    justify-content: center
-    position: absolute
-    top: 1.58rem
-    bottom: 0
-    right: 0
-    width: .4rem
 
-    .item
-      text-align: center
-      line-height: .4rem
-      color: $bgColor
+.list
+  display: flex
+  flex-direction: column
+  justify-content: center
+  position: absolute
+  top: 1.58rem
+  bottom: 0
+  right: 0
+  width: 0.4rem
+
+  .item
+    text-align: center
+    line-height: 0.4rem
+    color: $bgColor
 </style>

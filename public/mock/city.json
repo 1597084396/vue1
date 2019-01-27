@@ -1,7 +1,6 @@
 {
   "ret": true,
   "data": {
-    "currentCity": "北京",
     "hotCities": [{
       "id": 1,
       "spell": "beijing",
