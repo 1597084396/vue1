@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="title">热销推荐</div>
+        <div class="title">周末去哪儿</div>
         <ul>
             <div class="item" v-for="(item, index) of list" :key="index">
             <div class="item-wrapper">
@@ -28,7 +28,6 @@ export default {
 @import '../../../assets/style/mixins.styl';
 
 .title
-  margin-top: .2rem
   line-height: .8rem
   background: #eee
   text-indent: .2rem
@@ -43,7 +42,7 @@ export default {
 
 .item-info
   flex: 1
-  padding: .1rem .4rem .2rem
+  padding: .1rem .2rem .2rem
   min-width: 0
 
   .item-title
