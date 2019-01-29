@@ -1,33 +1,38 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img class="banner-img" src="https://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg">
+      <img class="banner-img" :src="bannerImg">
       <div class="banner-info">
-        <div class="banner-title">故宫</div>
+        <div class="banner-title">{{this.sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe72c;</span>
-          39
+          {{this.gallaryImgs.length}}
         </div>
       </div>
     </div>
-    <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+    <fade-animation>
+      <common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import CommonGallary from 'common/gallary/Gallary'
+import FadeAnimation from 'common/fade/FadeAnimation'
 export default {
   name: 'DetailBanner',
   components: {
-    CommonGallary
+    CommonGallary,
+    FadeAnimation
   },
   props: {
+    sightName: String,
+    bannerImg: String,
     gallaryImgs: Array
   },
   data () {
     return {
-      showGallary: false,
-      imgs: ['https://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg', 'https://img1.qunarzz.com/sight/p0/1602/68/68aa05adb5315f9990.water.jpg']
+      showGallary: false
     }
   },
   methods: {
@@ -59,7 +64,7 @@ export default {
     bottom: 0
     line-height: 0.72rem
     color: #fff
-    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8))
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8))
 
     .banner-title
       flex: 1
