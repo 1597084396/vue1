@@ -9,7 +9,7 @@
             <p class="icon-desc">{{item.desc}}</p>
           </div>
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-pagination" slot="pagination" v-if="showPagination"></div>
       </swiper>
     </div>
 </template>
@@ -38,6 +38,13 @@ export default {
         pages[page].push(item)
       })
       return pages
+    },
+    showPagination: function () {
+      if (this.list.length > 8) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <div>
     <city-header></city-header>
     <city-search :cities="cities"></city-search>
-    <city-list :currentCity="currentCity" :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
+    <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
     <city-alphabet :cities="cities" @change="handleLetterChange"></city-alphabet>
   </div>
 </template>
@@ -23,7 +23,6 @@ export default {
   },
   data () {
     return {
-      currentCity: '',
       cities: {},
       hotCities: [],
       letter: ''
