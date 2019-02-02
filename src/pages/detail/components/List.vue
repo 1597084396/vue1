@@ -4,6 +4,9 @@
       <div class="item-title border-bottom">
         <span class="item-title-icon"></span>
         {{item.title}}
+        <em v-if="!(item.children)" class="item-price">
+          ￥{{item.price}}
+        </em>
       </div>
       <div v-if="item.children" class="item-children">
         <detail-list :list="item.children"></detail-list>
@@ -39,5 +42,9 @@ export default {
   padding: 0 0.2rem
 
 .item-children
-  padding: 0 0.2rem
+  padding-left: 0.2rem
+
+.item-price
+  float: right
+  color: #ff9800
 </style>
