@@ -1,18 +1,18 @@
 <template>
-    <div>
-        <div class="title">周末去哪儿</div>
-        <ul>
-            <div class="item" v-for="(item, index) of list" :key="index">
-            <div class="item-wrapper">
-                <img class="item-img" :src="item.imgUrl" />
-            </div>
-            <div class="item-info">
-                <p class="item-title">{{item.title}}</p>
-                <p class="item-desc">{{item.desc}}</p>
-            </div>
-            </div>
-        </ul>
-    </div>
+  <div>
+    <div class="title">周末去哪儿</div>
+    <ul>
+      <div class="item" v-for="(item, index) of list" :key="index">
+      <div class="item-wrapper">
+        <img class="item-img" :src="item.imgUrl" />
+      </div>
+      <div class="item-info">
+        <p class="item-title">{{item.title}}</p>
+        <p class="item-desc">{{item.desc}}</p>
+      </div>
+      </div>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../../assets/style/mixins.styl';
+@import '~style/mixins.styl';
 
 .title
   line-height: .8rem

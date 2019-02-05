@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Index from './pages/index/Index'
 import Home from './pages/home/Home'
+import Explore from './pages/explore/Explore'
+import Zone from './pages/zone/Zone'
 import City from './pages/city/City'
 import Detail from './pages/detail/Detail'
 
@@ -8,11 +11,28 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      redirect: '/home',
+      name: 'index',
+      component: Index,
+      children: [
+        {
+          path: 'home',
+          name: 'home',
+          component: Home
+        }, {
+          path: 'explore',
+          name: 'explore',
+          component: Explore
+        }, {
+          path: 'zone',
+          name: 'zone',
+          component: Zone
+        }
+      ]
     }, {
       path: '/city',
       name: 'city',

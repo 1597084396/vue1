@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <home-header></home-header>
     <home-swiper :list="swiperList"></home-swiper>
     <home-icons :list="iconList"></home-icons>
@@ -17,7 +17,7 @@ import HomeWeekend from './components/Weekend'
 import axios from 'axios'
 import { mapState } from 'vuex'
 export default {
-  name: 'home',
+  name: 'index',
   components: {
     HomeHeader,
     HomeSwiper,
@@ -65,3 +65,8 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.content
+  padding-bottom: 50px
+</style>
