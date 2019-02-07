@@ -5,8 +5,14 @@
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe65c;</span>
-      输入城市/景点/游玩/主题
+      <input type="text" class="search" placeholder="输入城市/景点/游玩/主题" v-model.trim="info" @keyup.enter="search">
     </div>
+    <search-dig :is-show="isShow" @close="close">
+      <div slot="header">提示</div>
+      <div class="dialog_main" slot="main">
+          这里是内容插入到子组件的slot的name为main里面，可以在父组件中添加class定义样式，事件类型等各种操作
+      </div>
+    </search-dig>
     <router-link to="/city">
       <div class="header-right">
         {{this.city}}
@@ -17,9 +23,27 @@
 </template>
 
 <script>
+import searchDig from 'common/dialog/Dialog'
 import { mapState } from 'vuex'
 export default {
   name: 'HomeHeader',
+  components: {
+    searchDig
+  },
+  data () {
+    return {
+      info: '',
+      isShow: false
+    }
+  },
+  methods: {
+    search () {
+      this.isShow = true
+    },
+    close () {
+      this.isShow = false
+    }
+  },
   computed: {
     ...mapState(['city'])
   }
@@ -53,6 +77,10 @@ export default {
     margin-top: 0.12rem
     padding-left: 0.2rem
     color: #ccc
+
+    .search
+      margin: -0.1rem 0.2rem 0
+      line-height: 0.64rem
 
   .header-right
     min-width: 1.04rem

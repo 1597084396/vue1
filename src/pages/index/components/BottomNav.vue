@@ -30,6 +30,7 @@ export default {
   position: fixed
   bottom: 0
   display: inline-flex
+  z-index: 99
 
   .navli
     position: relative
