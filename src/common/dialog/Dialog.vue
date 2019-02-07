@@ -2,11 +2,11 @@
   <div class="dialog">
     <div class="cover" v-if="isShow" @click="close"></div>
     <transition name="drop">
-      <div class="content" :style="{top:topDistance+'%'}" v-if="isShow">
+      <div class="content" :style="{top:top+'%',width:width+'%',left:left+'%'}" v-if="isShow">
         <div class="header">
           <slot name="header">提示信息</slot>
         </div>
-        <div class="main" :style="{paddingTop:pdt+'px',paddingBottom:pdb+'px'}">
+        <div class="main" :style="{paddingTop:pdt+'rem',paddingBottom:pdb+'rem'}">
           <slot name="main">弹窗内容</slot>
         </div>
         <div class="foot" @click="close">
@@ -25,6 +25,21 @@ export default {
       type: Boolean,
       default: false,
       required: true
+    },
+    width: {
+      type: Number
+    },
+    left: {
+      type: Number
+    },
+    top: {
+      type: Number
+    },
+    pdt: {
+      type: Number
+    },
+    pdb: {
+      type: Number
     }
   },
   methods: {
@@ -69,7 +84,7 @@ export default {
   top: 30%
   width: 70%
   left: 7.5%
-  padding: 0 7.5%
+  padding: 0.1rem 7.5%
   background: #fff
   border-radius: 3%
   z-index: 300
@@ -85,6 +100,7 @@ export default {
 
   .foot
     float: right
+    margin-right: -0.2rem
 
     .btn
       padding: 0 0.2rem
