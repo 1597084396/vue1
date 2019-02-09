@@ -1,17 +1,23 @@
 <template>
 <div>
   <div class="header">
-    <span class="iconfont icon-camera">&#xe664;</span>
+    <router-link :to="{name:'explore'}" class="iconfont icon-camera">&#xe664;</router-link>
     <div class="head-pic"></div>
     <div class="info-content">
       <div class="info-name">Name</div>
       <div class="info-desc">Your Desc</div>
     </div>
     <div class="icon-content">
-      <span class="iconfont icon-info">&#xe6b0;</span>
+      <span class="iconfont icon-info" @click="showCode">&#xe6b0;</span>
       <span class="iconfont icon-info">&#xe6a3;</span>
     </div>
   </div>
+  <qr-code :is-show="isShow" @close="close">
+    <div slot="header">我的名片</div>
+    <div class="dialog_main" slot="main">
+        <qriously value="Hello World!" :size="200" />
+    </div>
+  </qr-code>
   <ul class="zoneul">
     <router-link :to="{name:'explore'}" tag="li" class="zoneli border-bottom">
       <span class="iconfont icon-title">&#xe64c;</span>
@@ -38,8 +44,27 @@
 </template>
 
 <script>
+import QrCode from 'common/dialog/Dialog'
+
 export default {
-  name: 'zone'
+  name: 'zone',
+  components: {
+    QrCode
+  },
+  data () {
+    return {
+      info: '',
+      isShow: false
+    }
+  },
+  methods: {
+    showCode () {
+      this.isShow = true
+    },
+    close () {
+      this.isShow = false
+    }
+  }
 }
 </script>
 
@@ -55,6 +80,7 @@ export default {
     top: 0.2rem
     right: 0.4rem
     font-size: 0.48rem
+    color: #333
 
   .head-pic
     width: 1.6rem
@@ -81,6 +107,9 @@ export default {
       .icon-info
         padding-left: 0.3rem
         font-size: 0.36rem
+
+.dialog_main
+  text-align: center
 
 .zoneul
   border-top: 0.25rem solid #eee

@@ -15,7 +15,9 @@
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.21",
     "vue-awesome-swiper": "^2.6.7",
+    "vue-infinite-loading": "^2.4.3",
     "vue-loader": "^15.6.2",
+    "vue-qriously": "^1.1.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
