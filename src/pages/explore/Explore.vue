@@ -1,50 +1,39 @@
 <template>
-  <div class="content">
-    <infinite-loading direction="top" @infinite="infiniteHandler"></infinite-loading>
-    <ul v-for="(item, $index) in list" :key="$index">
-      <li>{{item}}</li>
-    </ul>
+  <div>
+    <pyq-header></pyq-header>
+    <pyq-container :list="pyqList"></pyq-container>
   </div>
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
+import PyqHeader from './components/Header'
+import PyqContainer from './components/Container'
 import axios from 'axios'
 export default {
   name: 'explore',
   components: {
-    InfiniteLoading
+    PyqHeader,
+    PyqContainer
   },
   data () {
     return {
-      page: 1,
-      list: []
+      pyqList: []
     }
   },
   methods: {
-    infiniteHandler ($state) {
-      axios.get('/api/city.json')
-        .then((res, { data }) => {
-          res = res.data
-          if (res.ret && res.data) {
-            const data = res.data
-            this.cities = data.cities
-            this.name = this.cities.name
-            this.list.push(this.name)
-            $state.loaded()
-          }
-        })
+    getPyqInfo () {
+      axios.get('/api/pyq.json').then(this.getPyqInfoSucc)
+    },
+    getPyqInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.pyqList = data.pyqList
+      }
     }
+  },
+  mounted () {
+    this.getPyqInfo()
   }
 }
 </script>
-
-<style lang='css' scoped>
-.content {
-  padding-bottom: 1rem;
-}
-li {
-  height: 1rem;
-  background-color: #eee;
-}
-</style>

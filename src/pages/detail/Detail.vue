@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <detail-banner :sightName="sightName" :bannerImg="bannerImg" :gallaryImgs="gallaryImgs"></detail-banner>
-        <detail-header></detail-header>
-        <detail-list :list="list"></detail-list>
-        <div class="content"></div>
-    </div>
+  <div>
+    <detail-banner :sightName="sightName" :bannerImg="bannerImg" :gallaryImgs="gallaryImgs"></detail-banner>
+    <detail-header></detail-header>
+    <detail-list :list="list"></detail-list>
+    <div class="content"></div>
+  </div>
 </template>
 
 <script>
@@ -33,11 +33,13 @@ export default {
   },
   methods: {
     getDetailInfo () {
-      axios.get('/api/detail.json?id=', {
-        params: {
-          id: this.$route.params.id
-        }
-      }).then(this.handleGetDataSucc)
+      axios
+        .get('/api/detail.json?id=', {
+          params: {
+            id: this.$route.params.id
+          }
+        })
+        .then(this.handleGetDataSucc)
     },
     handleGetDataSucc (res) {
       res = res.data

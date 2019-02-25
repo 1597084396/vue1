@@ -4,6 +4,7 @@ import Index from './pages/index/Index'
 import Home from './pages/home/Home'
 import Explore from './pages/explore/Explore'
 import Zone from './pages/zone/Zone'
+import User from './pages/user/User'
 import City from './pages/city/City'
 import Detail from './pages/detail/Detail'
 import Error from './pages/error/Error'
@@ -42,6 +43,10 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: Detail
+    }, {
+      path: '/user',
+      name: 'user',
+      component: User
     }, {
       path: '*',
       name: 'error',
