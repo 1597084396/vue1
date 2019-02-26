@@ -7,7 +7,14 @@
       "userHead": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551100828300&di=16289b432e075cf180f33a44c8fc1cc6&imgtype=0&src=http%3A%2F%2F00.imgmini.eastday.com%2Fmobile%2F20180203%2F20180203085042_59afb7602989ed78d6500e99a7246da1_2.jpeg",
       "desc": "我的朋友圈我的朋友圈我的朋友圈我的朋友圈我的朋友圈我的朋友圈我的朋友圈我的朋友圈我的朋友圈",
       "pyqImg": ["../images/f-0.jpg","../images/f-1.jpg","../images/f-2.jpg","../images/f-3.jpg","../images/f-4.jpg","../images/f-5.jpg","../images/f-6.jpg","../images/f-7.jpg","../images/f-8.jpg"],
-      "time": "5分钟前"
+      "time": "5分钟前",
+      "comment": [{
+        "commentName": "步行者",
+        "commentDesc": "节日快乐节日快乐节日快乐节日快乐节日快乐节日快乐节日快乐"
+      }, {
+        "commentName": "旅行者",
+        "commentDesc": "节日快乐节日快乐节日快乐节日快乐节日快乐节日快乐节日快乐"
+      }]
     }, {
       "id": "0002",
       "userName": "步行者",

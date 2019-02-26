@@ -20,6 +20,12 @@ export default {
       default () {
         return []
       }
+    },
+    page: {
+      type: Number,
+      default () {
+        return 0
+      }
     }
   },
   data () {
@@ -27,6 +33,7 @@ export default {
       swiperOptions: {
         pagination: '.swiper-pagination',
         paginationType: 'fraction',
+        activeSlide: this.page,
         observeParents: true,
         observer: true
       }
@@ -48,18 +55,18 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
-  z-index: 99
+  z-index: 9999
   position: fixed
   left: 0
   right: 0
   top: 0
   bottom: 0
   background: #000
+  display: flex
+  align-items:Center;
 
   .wrapper
     width: 100%
-    height: 0
-    padding-bottom: 66.4%
 
     .gallary-img
       width: 100%
