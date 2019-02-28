@@ -1,7 +1,7 @@
 <template>
-    <transition>
-        <slot></slot>
-    </transition>
+  <transition>
+    <slot></slot>
+  </transition>
 </template>
 
 <script>

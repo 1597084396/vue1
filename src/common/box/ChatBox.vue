@@ -2,9 +2,9 @@
 <div>
   <div class="mask" @click="handleChatBoxClose"></div>
   <div class="box">
-    <input type="text" class="chat" placeholder="评论" autofocus>
+    <input type="text" class="chat" placeholder="评论" autofocus v-model="word">
     <span class="iconfont emoji-icon">&#xe67e;</span>
-    <div class="send-btn">发送</div>
+    <button :class="word?'enSend':'disSend'" :disabled="!word" @click="send">发送</button>
   </div>
 </div>
 </template>
@@ -12,8 +12,17 @@
 <script>
 export default {
   name: 'ChatBox',
+  data () {
+    return {
+      word: ''
+    }
+  },
   methods: {
     handleChatBoxClose () {
+      this.$emit('close')
+    },
+    send () {
+      this.word = ''
       this.$emit('close')
     }
   }
@@ -21,6 +30,7 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
+@import '~style/varibles.styl'
 .mask
   position: fixed
   left: 0
@@ -57,7 +67,7 @@ export default {
     margin-top: 0.2rem
     color: #333
 
-  .send-btn
+  .disSend
     line-height: 0.72rem
     margin: 0.14rem 0.2rem
     padding: 0 0.1rem
@@ -66,4 +76,14 @@ export default {
     box-sizing: border-box
     color: #999
     background-color: #eee
+
+  .enSend
+    line-height: 0.72rem
+    margin: 0.14rem 0.2rem
+    padding: 0 0.1rem
+    border: 0.02rem solid $bgColor
+    border-radius: 0.1rem
+    box-sizing: border-box
+    color: #fff
+    background-color: $bgColor
 </style>

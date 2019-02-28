@@ -15,10 +15,10 @@
         {{item.time}}
         <div class="tool-wrap">
           <div class="tool border-right">
-            <span class="iconfont icon-tool">&#xe64c;</span>赞
+            <span class="iconfont icon-tool">&#xe644;</span>赞
           </div>
           <div class="tool" @click="handleChatBoxClick">
-            <span class="iconfont icon-tool">&#xe64c;</span>评论
+            <span class="iconfont icon-tool">&#xe7d5;</span>评论
           </div>
         </div>
       </div>

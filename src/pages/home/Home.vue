@@ -5,6 +5,7 @@
     <home-icons :list="iconList"></home-icons>
     <home-recommend :list="recommendList"></home-recommend>
     <home-weekend :list="weekendList"></home-weekend>
+    <load v-show="showLoading"></load>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
+import Load from 'common/load/Load'
 import axios from 'axios'
 import { mapState } from 'vuex'
 export default {
@@ -23,7 +25,8 @@ export default {
     HomeSwiper,
     HomeIcons,
     HomeRecommend,
-    HomeWeekend
+    HomeWeekend,
+    Load
   },
   data () {
     return {
@@ -31,7 +34,8 @@ export default {
       swiperList: [],
       iconList: [],
       recommendList: [],
-      weekendList: []
+      weekendList: [],
+      showLoading: true
     }
   },
   methods: {
@@ -48,6 +52,7 @@ export default {
         this.recommendList = data.recommendList
         this.weekendList = data.weekendList
       }
+      this.showLoading = false
     }
   },
   computed: {
