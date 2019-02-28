@@ -6,7 +6,7 @@
     </router-link>
     <router-link :to="{name:'explore'}" tag="li" class="navli">
       <span class="iconfont nav-icon">&#xe67e;</span>
-      <p class="nav-title">发现</p>
+      <p class="nav-title">朋友圈</p>
     </router-link>
     <router-link :to="{name:'zone'}" tag="li" class="navli">
       <span class="iconfont nav-icon">&#xe78b;</span>

@@ -7,6 +7,7 @@ import Zone from './pages/zone/Zone'
 import User from './pages/user/User'
 import City from './pages/city/City'
 import Detail from './pages/detail/Detail'
+import Shop from './pages/shop/Shop'
 import Error from './pages/error/Error'
 
 Vue.use(Router)
@@ -47,6 +48,10 @@ export default new Router({
       path: '/user',
       name: 'user',
       component: User
+    }, {
+      path: '/shop',
+      name: 'shop',
+      component: Shop
     }, {
       path: '*',
       name: 'error',
