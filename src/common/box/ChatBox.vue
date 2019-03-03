@@ -3,7 +3,7 @@
   <div class="mask" @click="handleChatBoxClose"></div>
   <div class="box">
     <input type="text" class="chat" placeholder="评论" autofocus v-model="word">
-    <span class="iconfont emoji-icon">&#xe67e;</span>
+    <span class="iconfont emoji-icon">&#xe64a;</span>
     <button :class="word?'enSend':'disSend'" :disabled="!word" @click="send">发送</button>
   </div>
 </div>

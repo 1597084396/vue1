@@ -28,7 +28,7 @@
                 <span class="iconfont icon-tool">&#xe6e3;</span>赞
               </div>
               <div class="tool" @click="handleChatBoxClick($event)">
-                <span class="iconfont icon-tool">&#xe7d5;</span>评论
+                <span class="iconfont icon-tool">&#xe741;</span>评论
               </div>
             </div>
           </div>
