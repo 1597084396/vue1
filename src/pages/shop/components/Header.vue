@@ -8,7 +8,7 @@
         <div class="iconfont header-fixed-back">&#xe679;</div>
       </router-link>
       <div class="search-wrap">
-        <span class="iconfont search-icon">&#xe67e;</span>
+        <span class="iconfont search-icon">&#xe65c;</span>
         <input type="text" class="search">
       </div>
     </div>
@@ -52,8 +52,6 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~style/varibles.styl'
->>> .header-pre
-  z-index: 99
 
 .header-pre
   position: fixed
@@ -64,6 +62,7 @@ export default {
   border-radius: 0.4rem
   text-align: center
   background: rgba(0, 0, 0, 0.5)
+  z-index: 5
 
   .header-pre-back
     color: #fff
@@ -78,7 +77,7 @@ export default {
   background: #fff
   font-size: 0.32rem
   display: flex
-  z-index: 99
+  z-index: 5
 
   .header-next
     width: 0.8rem
