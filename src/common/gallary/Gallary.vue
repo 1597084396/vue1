@@ -16,10 +16,7 @@ export default {
   name: 'CommmonGallary',
   props: {
     imgs: {
-      type: Array,
-      default () {
-        return []
-      }
+      type: Array
     },
     page: {
       type: Number,
@@ -33,7 +30,7 @@ export default {
       swiperOptions: {
         pagination: '.swiper-pagination',
         paginationType: 'fraction',
-        activeSlide: this.page,
+        initialSlide: this.page,
         observeParents: true,
         observer: true
       }

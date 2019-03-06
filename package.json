@@ -13,7 +13,7 @@
     "fastclick": "^1.0.6",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue": "^2.5.21",
+    "vue": "^2.6.8",
     "vue-awesome-swiper": "^2.6.7",
     "vue-infinite-loading": "^2.4.3",
     "vue-loader": "^15.6.2",
@@ -31,7 +31,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.21",
+    "vue-template-compiler": "^2.6.8",
     "webpack": "^4.29.2"
   }
 }

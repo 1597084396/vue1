@@ -1,10 +1,11 @@
 <template>
   <div class="page">
+    <shop-load v-show="showLoading"></shop-load>
     <shop-header></shop-header>
-    <div class="header"></div>
     <!-- 店铺信息 -->
+    <div class="header" :style="{backgroundImage: 'url(' + shop.headpic + ')'}"></div>
     <div class="title">
-      <div class="shop-pic">
+      <div class="shop-pic" :style="{backgroundImage: 'url(' + shop.pic + ')'}">
         <span class="shop-type" v-if="shop.type">{{shop.type}}</span>
       </div>
       <p class="shop-name">{{shop.name}}</p>
@@ -31,13 +32,16 @@
     <div class="main">
       <div class="nav border-bottom">
         <div class="tag" @click="tab(0)">
-          <div class="tag-desc tag-active">点餐</div>
+          <div class="tag-desc" :class="{'tag-active':this.showPlate === 0}">点餐</div>
+          <div class="line" v-if="this.showPlate === 0"></div>
         </div>
-        <div class="tag">
-          <div class="tag-desc" @click="tab(1)">评价</div>
+        <div class="tag" @click="tab(1)">
+          <div class="tag-desc" :class="{'tag-active':this.showPlate === 1}">评价</div>
+          <div class="line" v-if="this.showPlate === 1"></div>
         </div>
-        <div class="tag">
-          <div class="tag-desc" @click="tab(2)">商家</div>
+        <div class="tag" @click="tab(2)">
+          <div class="tag-desc" :class="{'tag-active':this.showPlate === 2}">商家</div>
+          <div class="line" v-if="this.showPlate === 2"></div>
         </div>
       </div>
       <!-- 点餐页 -->
@@ -67,21 +71,19 @@
                     <p class="food-desc">{{food.desc}}</p>
                     <p class="food-desc">
                       <span>
-                        月售
-                        <span>{{food.sale}}</span>份
+                        月售<span>{{food.sale}}</span>份
                       </span>
                       <span class="food-rate">
-                        好评率
-                        <span>{{food.rate}}</span>%
+                        好评率<span>{{food.rate}}</span>%
                       </span>
                     </p>
                     <p class="food-price">
                       <span class="rmb">￥</span>
                       <span class="price">{{food.price}}</span>
-                      <span class="qi">起</span>
+                      <span class="qi" v-if="food.price.length > 1">起</span>
                     </p>
                     <div class="amount-wrap">
-                      <span class="iconfont move-icon" v-if="food.num > 0" @click="move(food)">&#xe685;</span>
+                      <span class="iconfont move-icon" v-if="food.num > 0" @click="move(food)">&#xe73d;</span>
                       <span class="amount" v-if="food.num > 0">{{food.num}}</span>
                       <span class="iconfont add-icon" @click="add(food)">&#xe6d8;</span>
                     </div>
@@ -91,27 +93,6 @@
             </div>
           </div>
         </div>
-        <!-- 购物车内容 -->
-        <div class="mask" v-show="showSlide" @click.stop="showcart"></div>
-        <transition name="fold">
-          <div class="cart-slide" v-show="showSlide">
-            <p class="slide-title">
-              已选商品
-              <span class="silde-clear" @click="clear"><span class="iconfont">&#xe6a6;</span>清空</span>
-            </p>
-            <ul>
-              <li class="slide-li border-bottom" v-for="(item,index) of this.addList" :key="index">
-                <span>{{item.title}}</span>
-                <span class="slide-price-wrap">￥<span class="slide-price">{{item.price * item.num}}</span></span>
-                <div class="slide-amount-wrap">
-                  <span class="iconfont slide-move-icon" v-if="item.num > 0" @click="move(item)">&#xe685;</span>
-                  <span class="slide-amount" v-if="item.num > 0">{{item.num}}</span>
-                  <span class="iconfont slide-add-icon" @click="add(item)">&#xe6d8;</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </transition>
         <!-- 购物车底栏 -->
         <div class="cart" @click="showcart">
           <div class="cart-btn" :class="{'cart-full': this.addList.length}">
@@ -126,6 +107,27 @@
           <p class="cart-info1">另需配送费</p>
           <button class="pay-btn" @click.stop="pay" :class="{'enPay': this.addList.length}" :disabled="!this.addList.length">去结算</button>
         </div>
+         <!-- 购物车内容 -->
+        <transition name="fold">
+          <div class="cart-slide" v-show="showSlide">
+            <p class="slide-title">
+              已选商品
+              <span class="silde-clear" @click="clear"><span class="iconfont">&#xe6a6;</span>清空</span>
+            </p>
+            <ul>
+              <li class="slide-li border-bottom" v-for="(item,index) of this.addList" :key="index">
+                <span>{{item.title}}</span>
+                <span class="slide-price-wrap">￥<span class="slide-price">{{item.price * item.num}}</span></span>
+                <div class="slide-amount-wrap">
+                  <span class="iconfont slide-move-icon" v-if="item.num > 0" @click="move(item)">&#xe73d;</span>
+                  <span class="slide-amount" v-if="item.num > 0">{{item.num}}</span>
+                  <span class="iconfont slide-add-icon" @click="add(item)">&#xe6d8;</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </transition>
+        <div class="mask" v-show="showSlide" @click.stop="showcart"></div>
       </div>
     </div>
     <!-- 评论页 -->
@@ -136,17 +138,20 @@
 </template>
 
 <script>
+import ShopLoad from './components/Load'
 import ShopHeader from './components/Header'
 import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
   name: 'shop',
   components: {
+    ShopLoad,
     ShopHeader
   },
   data () {
     return {
       showPlate: 0,
+      showLoading: true,
       showDot: false,
       showSlide: false,
       scrollY: 0,
@@ -171,6 +176,7 @@ export default {
           this.initScroll()
           this.calculateHeight()
         })
+        this.showLoading = false
       }
     },
     initScroll () {
@@ -321,7 +327,7 @@ export default {
 }
 @keyframes hide {
   from {transform: translateY(0%)}
-  to {transform: translateY(100%)}
+  to {transform: translateY(1000%)}
 }
 .fold-enter-active {
   animation: show .4s
@@ -341,7 +347,6 @@ export default {
     top: 0
     width: 100%
     height: 2rem
-    background-image: url('../../../public/images/shoptop.png')
     background-size: cover
 
   .title
@@ -359,10 +364,8 @@ export default {
       height: 1.5rem
       margin: -1rem 0 0 50%
       left: -0.75rem
-      background-image: url('https://fuss10.elemecdn.com/c/e3/54696a50a3d068f2b470dd6401b1epng.png?imageMogr/format/webp/thumbnail/150x/')
       background-size: cover
       border-radius: 0.06rem
-      box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2)
       z-index: 3
 
       .shop-type
@@ -372,6 +375,10 @@ export default {
         padding: 0.02rem 0.04rem
         background: linear-gradient(90deg, #fff100, #ffe339)
         font-size: 0.12rem
+        font-weight: 700
+        color: #6f3f15
+        border-top-left-radius: 0.06rem
+        border-bottom-right-radius: 0.06rem
 
     .shop-name
       padding-top: 0.8rem
@@ -430,6 +437,7 @@ export default {
       display: flex
 
       .tag
+        position: relative
         flex: 1
         color: #666
         text-align: center
@@ -438,6 +446,14 @@ export default {
         .tag-active
           color: #000
           font-weight: 700
+
+        .line
+          position: absolute
+          bottom: 0
+          width: 20%
+          height: 0.04rem
+          left: 40%
+          background-color: $bgColor
 
     .plate
       position: relative
@@ -546,6 +562,7 @@ export default {
                 font-size: 0.48rem
 
               .move-icon
+                color: #fff
                 color: $bgColor
                 font-size: 0.48rem
 

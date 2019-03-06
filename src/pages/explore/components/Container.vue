@@ -55,7 +55,7 @@
       </div>
     </div>
     <fade-animation>
-      <common-gallary :imgs="imgs" :page="page" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+      <common-gallary :imgs="imgs" :page="this.page" v-if="showGallary" @close="handleGallaryClose"></common-gallary>
     </fade-animation>
     <chat-box v-show="showChatBox" @close="handleChatBoxClose"></chat-box>
   </div>
