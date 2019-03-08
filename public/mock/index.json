@@ -20,7 +20,7 @@
     }, {
       "id": "0002",
       "imgUrl": "http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png",
-      "link": "",
+      "link": "test",
       "desc": "一日游"
     }, {
       "id": "0003",
@@ -31,7 +31,7 @@
       "id": "0004",
       "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/e3/67df61427c8e1302.png",
       "link": "shop",
-      "desc": "超市"
+      "desc": "餐点"
     }, {
       "id": "0005",
       "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png",
@@ -51,7 +51,7 @@
       "id": "0008",
       "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/fc/b10a6b2e4f0fe102.png",
       "link": "",
-      "desc": "滑雪"
+      "desc": "滑雪场"
     }],
     "recommendList": [{
       "id": "0001",

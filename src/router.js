@@ -7,6 +7,7 @@ import Zone from './pages/zone/Zone'
 import User from './pages/user/User'
 import City from './pages/city/City'
 import Detail from './pages/detail/Detail'
+import Test from './pages/test/Test'
 import Shop from './pages/shop/Shop'
 import Error from './pages/error/Error'
 
@@ -48,6 +49,10 @@ export default new Router({
       path: '/user',
       name: 'user',
       component: User
+    }, {
+      path: '/test',
+      name: 'test',
+      component: Test
     }, {
       path: '/shop',
       name: 'shop',

@@ -16,15 +16,16 @@
               :style="{backgroundImage: 'url(' + img + ')'}"
               :class="{'sudoku-4': item.pyqImg.length == 4}"
               @click="handleBannerClick(item.pyqImg, page)"
-            ></div>
+            >
+            </div>
           </div>
           <div class="time">
             {{item.time}}
             <div class="tool-wrap">
-              <div class="tool border-right" v-if="showIcon" @click="praise">
+              <div class="tool border-right" v-if="!item.isPraise" @click="praise(item)">
                 <span class="iconfont icon-tool">&#xe644;</span>赞
               </div>
-              <div class="tool tool-active border-right" v-if="!showIcon">
+              <div class="tool tool-active border-right" v-if="item.isPraise" @click="praise(item)">
                 <span class="iconfont icon-tool">&#xe6e3;</span>赞
               </div>
               <div class="tool" @click="handleChatBoxClick($event)">
@@ -78,8 +79,7 @@ export default {
       imgs: [],
       page: 0,
       showGallary: false,
-      showChatBox: false,
-      showIcon: true
+      showChatBox: false
     }
   },
   mounted () {
@@ -106,8 +106,8 @@ export default {
     handleChatBoxClose () {
       this.showChatBox = false
     },
-    praise () {
-      this.showIcon = !this.showIcon
+    praise (item) {
+      item.isPraise = !item.isPraise
     }
   }
 }

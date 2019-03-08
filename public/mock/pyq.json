@@ -12,6 +12,7 @@
         "praiseId": "0001",
         "praiseName": "旅行者"
       }],
+      "isPraise": false,
       "comment": [{
         "commentName": "步行者",
         "commentDesc": "节日快乐节日快乐节日快乐节日快乐节日快乐节日快乐节日快乐"
@@ -31,13 +32,15 @@
       }, {
         "praiseId": "0002",
         "praiseName": "步行者"
-      }]
+      }],
+      "isPraise": false
     }, {
       "id": "0003",
       "userName": "风行者",
       "userHead": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551100828300&di=16289b432e075cf180f33a44c8fc1cc6&imgtype=0&src=http%3A%2F%2F00.imgmini.eastday.com%2Fmobile%2F20180203%2F20180203085042_59afb7602989ed78d6500e99a7246da1_2.jpeg",
       "pyqImg": ["http://img1.qunarzz.com/wugc/p123/201211/19/a2045d091f02b25493835fbb.png", "http://img1.qunarzz.com/wugc/p123/201211/19/a2045d091f02b25493835fbb.png", "http://img1.qunarzz.com/wugc/p123/201211/19/a2045d091f02b25493835fbb.png", "http://img1.qunarzz.com/wugc/p123/201211/19/a2045d091f02b25493835fbb.png"],
-      "time": "16分钟前"
+      "time": "16分钟前",
+      "isPraise": false
     }]
   }
 }
