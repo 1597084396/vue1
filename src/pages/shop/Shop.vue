@@ -45,6 +45,7 @@
         </div>
       </div>
       <!-- 点餐页 -->
+      <left-animation>
       <div class="plate" v-if="showPlate === 0">
         <div class="menu-nav" ref="menuWrapper">
           <!-- 菜单分类侧栏 -->
@@ -129,11 +130,14 @@
         </transition>
         <div class="mask" v-show="showSlide" @click.stop="showcart"></div>
       </div>
+    </left-animation>
     </div>
     <!-- 评论页 -->
     <div class="plate" v-if="showPlate === 1"></div>
     <!-- 商家页 -->
+    <right-animation>
     <div class="plate" v-if="showPlate === 2"></div>
+    </right-animation>
   </div>
 </template>
 
@@ -141,12 +145,16 @@
 import ShopLoad from './components/Load'
 import ShopHeader from './components/Header'
 import BScroll from 'better-scroll'
+import LeftAnimation from 'common/translation/LeftAnimation'
+import RightAnimation from 'common/translation/RightAnimation'
 import axios from 'axios'
 export default {
   name: 'shop',
   components: {
     ShopLoad,
-    ShopHeader
+    ShopHeader,
+    LeftAnimation,
+    RightAnimation
   },
   data () {
     return {

@@ -4,7 +4,6 @@ import Index from './pages/index/Index'
 import Home from './pages/home/Home'
 import Explore from './pages/explore/Explore'
 import Zone from './pages/zone/Zone'
-import User from './pages/user/User'
 import City from './pages/city/City'
 import Detail from './pages/detail/Detail'
 import Test from './pages/test/Test'
@@ -45,10 +44,6 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: Detail
-    }, {
-      path: '/user',
-      name: 'user',
-      component: User
     }, {
       path: '/test',
       name: 'test',

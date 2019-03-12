@@ -9,7 +9,7 @@
     </div>
     <div class="icon-content">
       <span class="iconfont icon-info" @click="showCode">&#xe6b0;</span>
-      <router-link :to="{name:'user'}" tag="span" class="iconfont icon-info">&#xe6a3;</router-link>
+      <span class="iconfont icon-info">&#xe6a3;</span>
     </div>
   </div>
   <qr-code :is-show="isShow" @close="close">
