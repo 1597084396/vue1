@@ -32,118 +32,221 @@
     <div class="main">
       <div class="nav border-bottom">
         <div class="tag" @click="tab(0)">
-          <div class="tag-desc" :class="{'tag-active':this.showPlate === 0}">点餐</div>
-          <div class="line" v-if="this.showPlate === 0"></div>
+          <div class="tag-desc" :class="{'tag-active': showPlate === 0}">点餐</div>
+          <div class="line" v-if="showPlate === 0"></div>
         </div>
         <div class="tag" @click="tab(1)">
-          <div class="tag-desc" :class="{'tag-active':this.showPlate === 1}">评价</div>
-          <div class="line" v-if="this.showPlate === 1"></div>
+          <div class="tag-desc" :class="{'tag-active': showPlate === 1}">评价</div>
+          <div class="line" v-if="showPlate === 1"></div>
         </div>
         <div class="tag" @click="tab(2)">
-          <div class="tag-desc" :class="{'tag-active':this.showPlate === 2}">商家</div>
-          <div class="line" v-if="this.showPlate === 2"></div>
+          <div class="tag-desc" :class="{'tag-active': showPlate === 2}">商家</div>
+          <div class="line" v-if="showPlate === 2"></div>
         </div>
       </div>
       <!-- 点餐页 -->
       <left-animation>
-      <div class="plate" v-if="showPlate === 0">
-        <div class="menu-nav" ref="menuWrapper">
-          <!-- 菜单分类侧栏 -->
-          <ul>
-            <li class="menu-li" :class="{'menu-active': currentIndex === index}" v-for="(item,index) of this.menulist" :key="index" @click="selectMenu(index, $event)">
-              <div class="menu-dot" v-if="showDot">10</div>
-              {{item.type}}
-            </li>
-          </ul>
-        </div>
-        <div class="menu-main" ref="foodWrapper">
-          <div>
-            <div class="food-hook" v-for="(item,index) of this.menulist" :key="index">
-              <div class="menu-title">{{item.type}}</div>
-              <!-- 菜单内容主栏 -->
-              <ul class="menu-list">
-                <li class="menu-li" v-for="(food,index) of item.goods" :key="index">
-                  <img
-                    class="food-pic"
-                    src="http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
-                  >
-                  <div class="food">
-                    <p class="food-title">{{food.title}}</p>
-                    <p class="food-desc">{{food.desc}}</p>
-                    <p class="food-desc">
-                      <span>
-                        月售<span>{{food.sale}}</span>份
-                      </span>
-                      <span class="food-rate">
-                        好评率<span>{{food.rate}}</span>%
-                      </span>
-                    </p>
-                    <p class="food-price">
-                      <span class="rmb">￥</span>
-                      <span class="price">{{food.price}}</span>
-                      <span class="qi" v-if="food.price.length > 1">起</span>
-                    </p>
-                    <div class="amount-wrap">
-                      <span class="iconfont move-icon" v-if="food.num > 0" @click="move(food)">&#xe73d;</span>
-                      <span class="amount" v-if="food.num > 0">{{food.num}}</span>
-                      <span class="iconfont add-icon" @click="add(food)">&#xe6d8;</span>
+        <div class="plate plate0" v-if="showPlate === 0">
+          <div class="menu-nav" ref="menuWrapper">
+            <!-- 菜单分类侧栏 -->
+            <ul>
+              <li
+                class="menu-li"
+                :class="{'menu-active': currentIndex === index}"
+                v-for="(item,index) of menulist"
+                :key="index"
+                @click="selectMenu(index, $event)"
+              >
+                <div class="menu-dot" v-if="showDot">10</div>
+                {{item.type}}
+              </li>
+            </ul>
+          </div>
+          <div class="menu-main" ref="foodWrapper">
+            <div>
+              <div class="food-hook" v-for="(item,index) of menulist" :key="index">
+                <div class="menu-title">{{item.type}}</div>
+                <!-- 菜单内容主栏 -->
+                <ul class="menu-list">
+                  <li class="menu-li" v-for="(food,index) of item.goods" :key="index">
+                    <img
+                      class="food-pic"
+                      src="http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
+                    >
+                    <div class="food">
+                      <p class="food-title">{{food.title}}</p>
+                      <p class="food-desc">{{food.desc}}</p>
+                      <p class="food-desc">
+                        <span>
+                          月售<span>{{food.sale}}</span>份
+                        </span>
+                        <span class="food-rate">
+                          好评率<span>{{food.rate}}</span>%
+                        </span>
+                      </p>
+                      <p class="food-price">
+                        <span class="rmb">￥</span>
+                        <span class="price">{{food.price}}</span>
+                        <span class="qi" v-if="food.price.length > 1">起</span>
+                      </p>
+                      <div class="amount-wrap">
+                        <span
+                          class="iconfont move-icon"
+                          v-if="food.num > 0"
+                          @click="move(food)"
+                        >&#xe73d;</span>
+                        <span class="amount" v-if="food.num > 0">{{food.num}}</span>
+                        <span class="iconfont add-icon" @click="add(food,$event)">&#xe6d8;</span>
+                      </div>
                     </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 购物车底栏 -->
+          <div class="cart" @click="showcart">
+            <div class="cart-btn" :class="{'cart-full': addList.length}">
+              <span class="iconfont cart-icon">&#xe6b9;</span>
+              <div class="cart-dot" v-if="cartNum > 0">{{cartNum}}</div>
+            </div>
+            <p class="cart-info0">
+              <span class="price0" v-if="addList.length === 0">未选购商品</span>
+              <span class="price1" v-if="addList.length > 0">¥{{realCost}}</span>
+              <span class="price2" v-if="addList.length > 0">¥{{priCost}}</span>
+            </p>
+            <p class="cart-info1">另需配送费</p>
+            <button
+              class="pay-btn"
+              @click.stop="pay"
+              :class="{'enPay': priCost > shop.min}"
+              :disabled="priCost < shop.min"
+            >
+            <span class="pay0" v-if="addList.length === 0">起送价¥{{shop.min}}</span>
+            <p class="pay0" v-if="addList.length > 0 && priCost < shop.min">
+              还差¥{{(shop.min - priCost).toFixed(2)}}起送
+            </p>
+            <span class="pay1" v-if="priCost >= shop.min">去结算</span>
+            </button>
+          </div>
+          <!-- 购物车内容 -->
+          <transition name="fold">
+            <div class="cart-slide" v-show="showSlide">
+              <p class="slide-title">
+                已选商品
+                <span class="silde-clear" @click="clear">
+                  <span class="iconfont">&#xe6a6;</span>清空
+                </span>
+              </p>
+              <ul>
+                <li
+                  class="slide-li border-bottom"
+                  v-for="(item,index) of this.addList"
+                  :key="index"
+                >
+                  <span>{{item.title}}</span>
+                  <span class="slide-price-wrap">
+                    ￥<span class="slide-price">{{item.price * item.num}}</span>
+                  </span>
+                  <div class="slide-amount-wrap">
+                    <span
+                      class="iconfont slide-move-icon"
+                      v-if="item.num > 0"
+                      @click="move(item)"
+                    >&#xe73d;</span>
+                    <span class="slide-amount" v-if="item.num > 0">{{item.num}}</span>
+                    <span class="iconfont slide-add-icon" @click="add(item,$event)">&#xe6d8;</span>
                   </div>
                 </li>
               </ul>
             </div>
+          </transition>
+          <div class="mask" v-show="showSlide" @click.stop="showcart"></div>
+          <!-- 添加动画 -->
+          <div class="ball-container">
+            <div v-for="(ball,index) in balls" :key="index">
+              <transition @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
+                <div class="ball" v-show="ball.show">
+                  <div class="inner">1</div>
+                </div>
+              </transition>
+            </div>
           </div>
         </div>
-        <!-- 购物车底栏 -->
-        <div class="cart" @click="showcart">
-          <div class="cart-btn" :class="{'cart-full': this.addList.length}">
-            <span class="iconfont cart-icon">&#xe6b9;</span>
-            <div class="cart-dot" v-if="cartNum > 0">{{cartNum}}</div>
+      </left-animation>
+      <!-- 评论页 -->
+      <left-animation>
+        <div class="plate" v-if="showPlate === 1">
+          <div class="evaluate-head">
+            <div class="evaluate-head-left">
+              <div class="evaluate-head-wrap">
+                <div class="evaluate-head-main">
+                  <div class="evaluate-rate0">{{shop.rate}}</div>
+                  <div class="evaluate-desc">
+                    <p class="evaluate-desc0">商家评分</p>
+                    <p class="evaluate-star">
+                      <star :rate="shop.rate"></star>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="evaluate-head-right">
+              <div class="evaluate-class">
+                <p class="evaluate-desc1">味道</p>
+                <p class="evaluate-rate1">{{shop.rate1}}</p>
+              </div>
+              <div class="evaluate-class">
+                <p class="evaluate-desc1">包装</p>
+                <p class="evaluate-rate1">{{shop.rate2}}</p>
+              </div>
+              <div class="evaluate-class">
+                <p class="evaluate-desc1">配送</p>
+                <p class="evaluate-rate1">{{shop.rate3}}</p>
+              </div>
+            </div>
           </div>
-          <p class="cart-info0">
-            <span class="price0" v-if="priCost <= 0">未选购商品</span>
-            <span class="price1" v-if="priCost > 0">¥{{realCost}}</span>
-            <span class="price2" v-if="priCost > 0">¥{{priCost}}</span>
-          </p>
-          <p class="cart-info1">另需配送费</p>
-          <button class="pay-btn" @click.stop="pay" :class="{'enPay': this.addList.length}" :disabled="!this.addList.length">去结算</button>
-        </div>
-         <!-- 购物车内容 -->
-        <transition name="fold">
-          <div class="cart-slide" v-show="showSlide">
-            <p class="slide-title">
-              已选商品
-              <span class="silde-clear" @click="clear"><span class="iconfont">&#xe6a6;</span>清空</span>
+          <div class="evaluate-main border-bottom">
+            <ul class="evaluate-tag-wrap">
+              <li class="evaluate-tag" :class="{'tag-pos':item.type===0||1, 'tag-neg':item.type===2}" v-for="(item,index) of shop.tag" :key="index">
+                {{item.desc}}
+              </li>
+            </ul>
+            <p class="evaluate-show border-bottom">
+              <span class="iconfont evaluate-icon" :class="showEva?'enEva':'disEva'">&#xe656;</span>只看有内容的评价
             </p>
-            <ul>
-              <li class="slide-li border-bottom" v-for="(item,index) of this.addList" :key="index">
-                <span>{{item.title}}</span>
-                <span class="slide-price-wrap">￥<span class="slide-price">{{item.price * item.num}}</span></span>
-                <div class="slide-amount-wrap">
-                  <span class="iconfont slide-move-icon" v-if="item.num > 0" @click="move(item)">&#xe73d;</span>
-                  <span class="slide-amount" v-if="item.num > 0">{{item.num}}</span>
-                  <span class="iconfont slide-add-icon" @click="add(item)">&#xe6d8;</span>
+            <ul class="evaluate-list">
+              <li class="evaluate-li border-bottom">
+                <div class="list-left">
+                  <div class="list-pic"></div>
+                </div>
+                <div class="list-right">
+                  <p class="list-info">
+                    <span class="list-name">3******f</span>
+                    <span class="list-date">2019-3-11</span>
+                  </p>
+                  <p class="list-star">
+                    <star :rate="3.5"></star>
+                  </p>
+                  <p class="list-desc">而后hi分班考试不可不vb肯定不V刊不是告诉高房价司法考试呢可能</p>
                 </div>
               </li>
             </ul>
           </div>
-        </transition>
-        <div class="mask" v-show="showSlide" @click.stop="showcart"></div>
-      </div>
-    </left-animation>
+        </div>
+      </left-animation>
+      <!-- 商家页 -->
+      <right-animation>
+        <div class="plate" v-if="showPlate === 2"></div>
+      </right-animation>
     </div>
-    <!-- 评论页 -->
-    <div class="plate" v-if="showPlate === 1"></div>
-    <!-- 商家页 -->
-    <right-animation>
-    <div class="plate" v-if="showPlate === 2"></div>
-    </right-animation>
   </div>
 </template>
 
 <script>
 import ShopLoad from './components/Load'
 import ShopHeader from './components/Header'
+import Star from './components/Star'
 import BScroll from 'better-scroll'
 import LeftAnimation from 'common/translation/LeftAnimation'
 import RightAnimation from 'common/translation/RightAnimation'
@@ -153,6 +256,7 @@ export default {
   components: {
     ShopLoad,
     ShopHeader,
+    Star,
     LeftAnimation,
     RightAnimation
   },
@@ -162,12 +266,15 @@ export default {
       showLoading: true,
       showDot: false,
       showSlide: false,
+      showEva: false,
       scrollY: 0,
       shop: {},
       menulist: [],
       goods: [],
       listHeight: [],
-      addList: []
+      addList: [],
+      balls: [{ show: false }, { show: false }, { show: false }, { show: false }, { show: false }],
+      dropBalls: []
     }
   },
   methods: {
@@ -253,7 +360,7 @@ export default {
     pay () {
       alert('敬请期待')
     },
-    add (food) {
+    add (food, e) {
       let foodIndex = this.addList.findIndex(item => item.id === food.id)
       if (foodIndex === -1) {
         food.num += 1
@@ -261,6 +368,7 @@ export default {
       } else {
         this.addList[foodIndex].num++
       }
+      this.drop(e.target)
     },
     move (food) {
       let foodIndex = this.addList.findIndex(item => item.id === food.id)
@@ -278,6 +386,41 @@ export default {
       }
       this.addList = []
       this.showSlide = false
+    },
+    drop (el) {
+      for (let i = 0; i < this.balls.length; i++) {
+        const ball = this.balls[i]
+        if (!ball.show) {
+          ball.show = true
+          ball.el = el
+          this.dropBalls.push(ball)
+          return
+        }
+      }
+    },
+    beforeDrop (el) {
+      const ball = this.dropBalls[this.dropBalls.length - 1]
+      const rect = ball.el.getBoundingClientRect()
+      const x = rect.left - 32
+      const y = -(window.innerHeight - rect.top - 22)
+      el.style.display = ''
+      el.style.transform = el.style.webkitTransform = `translate3d(0,${y}px,0)`
+      const inner = el.getElementsByClassName('inner')[0]
+      inner.style.transform = inner.style.webkitTransform = `translate3d(${x}px,0,0)`
+    },
+    dropping (el, done) {
+      this._reflow = document.body.offsetHeight
+      el.style.transform = el.style.webkitTransform = `translate3d(0,0,0)`
+      const inner = el.getElementsByClassName('inner')[0]
+      inner.style.transform = inner.style.webkitTransform = `translate3d(0,0,0)`
+      el.addEventListener('transitionend', done)
+    },
+    afterDrop (el) {
+      const ball = this.dropBalls.shift()
+      if (ball) {
+        ball.show = false
+        el.style.display = 'none'
+      }
     }
   },
   created () {
@@ -329,20 +472,26 @@ export default {
 
 <style lang='stylus' scoped>
 @import '~style/varibles.styl'
-@keyframes show {
-  from {transform: translateY(100%)}
-  to {transform: translateY(0%)}
-}
-@keyframes hide {
-  from {transform: translateY(0%)}
-  to {transform: translateY(1000%)}
-}
-.fold-enter-active {
-  animation: show .4s
-}
-.fold-leave-active {
-  animation: hide .4s
-}
+
+@keyframes show
+  from
+    transform: translateY(100%)
+
+  to
+    transform: translateY(0%)
+
+@keyframes hide
+  from
+    transform: translateY(0%)
+
+  to
+    transform: translateY(1000%)
+
+.fold-enter-active
+  animation: show 0.4s
+
+.fold-leave-active
+  animation: hide 0.4s
 
 *
   touch-action: pan-y
@@ -466,7 +615,10 @@ export default {
     .plate
       position: relative
       height: calc(100% - 0.8rem)
-      display: flex
+      background-color: #eee
+
+      &.plate0
+        display: flex
 
       .menu-nav
         width: 1.6rem
@@ -501,6 +653,7 @@ export default {
         padding: 0 0.3rem 0 0.2rem
         min-width: 0
         overflow: hidden
+        background-color: #fff
 
         .menu-title
           padding: 0.1rem 0
@@ -574,6 +727,130 @@ export default {
                 color: $bgColor
                 font-size: 0.48rem
 
+      .evaluate-head
+        width: 100%
+        height: 1.68rem
+        background-color: #fff
+        display: flex
+
+        .evaluate-head-left
+          width: 45%
+          display: flex
+
+          .evaluate-head-wrap
+            width: 100%
+            margin: 0.4rem 0
+            border-right: 0.02rem solid #eee
+            box-sizing: border-box
+
+            .evaluate-head-main
+              display: flex
+              justify-content: center
+
+              .evaluate-rate0
+                font-size: 0.8rem
+                color: #f60
+
+              .evaluate-desc
+                margin-left: 0.2rem
+                line-height: 0.4rem
+
+                .evaluate-desc0
+                  font-size: 0.28rem
+
+                .evaluate-star
+                  font-size: 0.28rem
+
+        .evaluate-head-right
+          width: 55%
+          padding: 0.4rem 0
+          text-align: center
+          display: flex
+
+          .evaluate-class
+            flex: 1
+            color: #666
+
+            .evaluate-desc1
+              font-size: 0.28rem
+
+            .evaluate-rate1
+              font-size: 0.4rem
+              font-weight: 600
+              margin-top: 0.2rem
+
+      .evaluate-main
+        width: 100%
+        margin-top: 0.2rem
+        background-color #fff
+        color: #666
+
+        .evaluate-tag-wrap
+          padding: 0.3rem
+
+          .evaluate-tag
+            padding: 0.2rem
+            margin: 0.1rem
+            border-radius: 0.06rem
+            display: inline-block
+
+          .tag-pos
+            background-color: #ebf5ff
+
+          .tag-neg
+            background-color: #eee
+
+        .evaluate-show
+          line-height: 0.6rem
+          padding: 0 0.3rem
+          font-size: 0.28rem
+
+          .evaluate-icon
+            margin-right: 0.1rem
+
+          .enEva
+            color: $bgColor
+
+          .disEva
+            color: #eee
+
+        .evaluate-list
+          .evaluate-li
+            padding: 0.3rem
+            display: flex
+
+            .list-left
+              width: 0.8rem
+
+              .list-pic
+                width: 0.6rem
+                height: 0.6rem
+                border-radius: 50%
+                background-size: 0.6rem
+                background-image: url('http://shadow.elemecdn.com/faas/h5/static/sprite.3ffb5d8.png')
+
+            .list-right
+              flex: 1
+
+              .list-info
+                font-size: 0.24rem
+                display: flex
+                justify-content: space-between
+
+                .list-date
+                  color: #999
+
+              .list-star
+                font-size: 0.24rem
+                margin-top: 0.1rem
+
+              .list-desc
+                line-height: 0.36rem
+                margin-top: 0.2rem
+                font-size: 0.28rem
+                word-break: normal
+                word-wrap: break-word
+
     .cart
       position: fixed
       bottom: 0
@@ -644,9 +921,14 @@ export default {
         text-align: center
         color: #999
         background-color: #555
-        font-size: 0.32rem
         font-weight: 600
         float: right
+
+        .pay0
+          font-size: 0.28rem
+
+        .pay1
+          font-size: 0.32rem
 
       .enPay
         color: #fff
@@ -700,6 +982,25 @@ export default {
           .slide-move-icon
             color: $bgColor
             font-size: 0.48rem
+
+    .ball-container
+      .ball
+        position: fixed
+        left: 0.7rem
+        bottom: 0.48rem
+        z-index: 999
+        transition: all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+
+        .inner
+          width: 0.48rem
+          height: 0.48rem
+          line-height: 0.48rem
+          font-size: 0.36rem
+          text-align: center
+          color: #fff
+          background-color: $bgColor
+          border-radius: 50%
+          transition: all 0.4s linear
 
     .mask
       position: fixed

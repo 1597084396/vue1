@@ -20,7 +20,7 @@
   </qr-code>
   <ul class="zoneul">
     <router-link :to="{name:'explore'}" tag="li" class="zoneli border-bottom">
-      <span class="iconfont icon-title">&#xe64c;</span>
+      <span class="iconfont icon-title">&#xe642;</span>
       <p class="zone-title">收藏</p>
       <span class="iconfont icon-enter">&#xe6a3;</span>
     </router-link>
