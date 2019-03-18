@@ -4,6 +4,7 @@
     "id": "0001",
     "name": "甘传奇鸡排",
     "type": "品牌",
+    "desc": "真香",
     "rate": 4.5,
     "rate1": 4.6,
     "rate2": 4.8,
@@ -14,7 +15,7 @@
     "min": 20,
     "headpic": "https://fuss10.elemecdn.com/2/28/b52b8dad5f34f79699e0b82e5e160png.png",
     "pic": "https://fuss10.elemecdn.com/c/e3/54696a50a3d068f2b470dd6401b1epng.png",
-    "menulist": [{
+    "menuList": [{
       "type": "必选品(甘传奇炸鸡)",
       "goods": [{
         "id": "1001",
@@ -38,7 +39,7 @@
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 6.99,
+        "price": 9.99,
         "num": 0
       }]
     }, {
@@ -111,7 +112,7 @@
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 12.99,
+        "price": 10.00,
         "num": 0
       }, {
         "id": "1010",
@@ -125,22 +126,50 @@
     }],
     "tag": [{
         "desc": "全部 954",
-        "type": 0
+        "type": 0,
+        "select" : true
       }, {
         "desc": "好评 861",
-        "type": 1
+        "type": 1,
+        "select" : false
       }, {
         "desc": "差评 33",
-        "type": 2
+        "type": 2,
+        "select" : false
       }, {
         "desc": "食物新鲜 51",
-        "type": 1
+        "type": 1,
+        "select" : false
       }, {
         "desc": "味道好 29",
-        "type": 1
+        "type": 1,
+        "select" : false
       }, {
         "desc": "送货慢 13",
-        "type": 2
-      }]
+        "type": 2,
+        "select" : false
+    }],
+    "evaluteList": [{
+      "name": "3******f",
+      "date": "2019-3-11",
+      "pic": "http://shadow.elemecdn.com/faas/h5/static/sprite.3ffb5d8.png",
+      "rate": 2.0,
+      "type": 2,
+      "desc": "差评差评差评差评差评差评差评差评差评差评差评差评差评差评差评差评"
+    }, {
+      "name": "3******d",
+      "date": "2019-3-9",
+      "pic": "http://shadow.elemecdn.com/faas/h5/static/sprite.3ffb5d8.png",
+      "rate": 5.0,
+      "type": 1,
+      "desc": "好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评"
+    }, {
+      "name": "3******a",
+      "date": "2019-3-8",
+      "pic": "http://shadow.elemecdn.com/faas/h5/static/sprite.3ffb5d8.png",
+      "rate": 4.0,
+      "type": 1,
+      "desc": ""
+    }]
   }
 }

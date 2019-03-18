@@ -6,7 +6,6 @@ import Explore from './pages/explore/Explore'
 import Zone from './pages/zone/Zone'
 import City from './pages/city/City'
 import Detail from './pages/detail/Detail'
-import Test from './pages/test/Test'
 import Shop from './pages/shop/Shop'
 import Error from './pages/error/Error'
 
@@ -44,10 +43,6 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: Detail
-    }, {
-      path: '/test',
-      name: 'test',
-      component: Test
     }, {
       path: '/shop',
       name: 'shop',

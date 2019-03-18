@@ -3,7 +3,7 @@
     <shop-load v-show="showLoading"></shop-load>
     <shop-header></shop-header>
     <!-- 店铺信息 -->
-    <div class="header" :style="{backgroundImage: 'url(' + shop.headpic + ')'}"></div>
+    <div class="shop-header" :style="{backgroundImage: 'url(' + shop.headpic + ')'}"></div>
     <div class="title">
       <div class="shop-pic" :style="{backgroundImage: 'url(' + shop.pic + ')'}">
         <span class="shop-type" v-if="shop.type">{{shop.type}}</span>
@@ -53,7 +53,7 @@
               <li
                 class="menu-li"
                 :class="{'menu-active': currentIndex === index}"
-                v-for="(item,index) of menulist"
+                v-for="(item,index) of menuList"
                 :key="index"
                 @click="selectMenu(index, $event)"
               >
@@ -64,7 +64,7 @@
           </div>
           <div class="menu-main" ref="foodWrapper">
             <div>
-              <div class="food-hook" v-for="(item,index) of menulist" :key="index">
+              <div class="food-hook" v-for="(item,index) of menuList" :key="index">
                 <div class="menu-title">{{item.type}}</div>
                 <!-- 菜单内容主栏 -->
                 <ul class="menu-list">
@@ -176,7 +176,7 @@
       </left-animation>
       <!-- 评论页 -->
       <left-animation>
-        <div class="plate" v-if="showPlate === 1">
+        <div class="plate plate1" v-if="showPlate === 1">
           <div class="evaluate-head">
             <div class="evaluate-head-left">
               <div class="evaluate-head-wrap">
@@ -208,27 +208,37 @@
           </div>
           <div class="evaluate-main border-bottom">
             <ul class="evaluate-tag-wrap">
-              <li class="evaluate-tag" :class="{'tag-pos':item.type===0||1, 'tag-neg':item.type===2}" v-for="(item,index) of shop.tag" :key="index">
+              <li
+                class="evaluate-tag"
+                :class="{'tag-pos':(item.type===0||1) && !item.select,
+                        'tag-neg':(item.type===2) && !item.select,
+                        'tag-pos-active':(item.type===0||1) && item.select,
+                        'tag-neg-active':(item.type===2) && item.select}"
+                v-for="(item,index) of shop.tag"
+                :key="index"
+                @click="selectType(item.type, index)"
+              >
                 {{item.desc}}
               </li>
             </ul>
-            <p class="evaluate-show border-bottom">
+            <p class="evaluate-show border-bottom" @click="ifShowEva">
               <span class="iconfont evaluate-icon" :class="showEva?'enEva':'disEva'">&#xe656;</span>只看有内容的评价
             </p>
+            <!-- 评论列表 -->
             <ul class="evaluate-list">
-              <li class="evaluate-li border-bottom">
+              <li class="evaluate-li border-bottom" v-for="(item,index) of selectList" :key="index" v-show="showEva || item.desc">
                 <div class="list-left">
-                  <div class="list-pic"></div>
+                  <div class="list-pic" :style="{backgroundImage: 'url(' + item.pic + ')'}"></div>
                 </div>
                 <div class="list-right">
                   <p class="list-info">
-                    <span class="list-name">3******f</span>
-                    <span class="list-date">2019-3-11</span>
+                    <span class="list-name">{{item.name}}</span>
+                    <span class="list-date">{{item.date}}</span>
                   </p>
                   <p class="list-star">
-                    <star :rate="3.5"></star>
+                    <star :rate="item.rate" :label="true"></star>
                   </p>
-                  <p class="list-desc">而后hi分班考试不可不vb肯定不V刊不是告诉高房价司法考试呢可能</p>
+                  <p class="list-desc">{{item.desc}}</p>
                 </div>
               </li>
             </ul>
@@ -237,7 +247,13 @@
       </left-animation>
       <!-- 商家页 -->
       <right-animation>
-        <div class="plate" v-if="showPlate === 2"></div>
+        <div class="plate" v-if="showPlate === 2">
+          <div class="brand-main">
+            <img class="brand-pic" :src="shop.headpic">
+            <p class="brand-name">{{shop.name}}</p>
+            <p class="brand-desc">{{shop.desc}}</p>
+          </div>
+        </div>
       </right-animation>
     </div>
   </div>
@@ -266,13 +282,15 @@ export default {
       showLoading: true,
       showDot: false,
       showSlide: false,
-      showEva: false,
+      showEva: true,
       scrollY: 0,
+      type: 0,
       shop: {},
-      menulist: [],
+      menuList: [],
       goods: [],
       listHeight: [],
       addList: [],
+      evaList: [],
       balls: [{ show: false }, { show: false }, { show: false }, { show: false }, { show: false }],
       dropBalls: []
     }
@@ -286,7 +304,8 @@ export default {
       if (res.ret && res.data) {
         const data = res.data
         this.shop = data
-        this.menulist = data.menulist
+        this.menuList = data.menuList
+        this.evaList = data.evaluteList
         this.$nextTick(() => {
           this.initScroll()
           this.calculateHeight()
@@ -340,7 +359,7 @@ export default {
       }
     },
     compare (x, y, i) {
-      if (x >= y[i].split('-')[0]) {
+      if (x >= parseInt(y[i].split('-')[0])) {
         if (y[i + 1]) {
           return this.compare(x, y, ++i)
         } else {
@@ -356,6 +375,12 @@ export default {
     },
     tab (index) {
       this.showPlate = index
+      if (index === 0) {
+        this.$nextTick(() => {
+          this.initScroll()
+          this.calculateHeight()
+        })
+      }
     },
     pay () {
       alert('敬请期待')
@@ -421,6 +446,17 @@ export default {
         ball.show = false
         el.style.display = 'none'
       }
+    },
+    ifShowEva () {
+      this.showEva = !this.showEva
+    },
+    selectType (type, index) {
+      let arr = this.shop.tag
+      for (let i = 0; i < arr.length; i++) {
+        this.shop.tag[i].select = false
+      }
+      arr[index].select = true
+      this.type = type
     }
   },
   created () {
@@ -465,6 +501,22 @@ export default {
     realCost () {
       let cost = this.priCost - this.disCost
       return cost.toFixed(2)
+    },
+    selectList () {
+      let list
+      switch (this.type) {
+        case 0 :
+          list = this.evaList
+          break
+        case 1 :
+          list = this.evaList.filter(n => n.type === 1)
+          break
+        case 2 :
+          list = this.evaList.filter(n => n.type === 2)
+          break
+        default : list = this.evaList
+      }
+      return list
     }
   }
 }
@@ -499,7 +551,7 @@ export default {
 .page
   height: 100%
 
-  .header
+  .shop-header
     position: fixed
     top: 0
     width: 100%
@@ -591,6 +643,7 @@ export default {
 
     .nav
       line-height: 0.8rem
+      box-sizing: border-box
       display: flex
 
       .tag
@@ -598,7 +651,7 @@ export default {
         flex: 1
         color: #666
         text-align: center
-        font-size: 0.32rem
+        font-size: 0.28rem
 
         .tag-active
           color: #000
@@ -727,129 +780,156 @@ export default {
                 color: $bgColor
                 font-size: 0.48rem
 
-      .evaluate-head
-        width: 100%
-        height: 1.68rem
-        background-color: #fff
-        display: flex
-
-        .evaluate-head-left
-          width: 45%
+      &.plate1
+        overflow-y: scroll
+        .evaluate-head
+          width: 100%
+          height: 1.68rem
+          background-color: #fff
           display: flex
 
-          .evaluate-head-wrap
-            width: 100%
-            margin: 0.4rem 0
-            border-right: 0.02rem solid #eee
-            box-sizing: border-box
-
-            .evaluate-head-main
-              display: flex
-              justify-content: center
-
-              .evaluate-rate0
-                font-size: 0.8rem
-                color: #f60
-
-              .evaluate-desc
-                margin-left: 0.2rem
-                line-height: 0.4rem
-
-                .evaluate-desc0
-                  font-size: 0.28rem
-
-                .evaluate-star
-                  font-size: 0.28rem
-
-        .evaluate-head-right
-          width: 55%
-          padding: 0.4rem 0
-          text-align: center
-          display: flex
-
-          .evaluate-class
-            flex: 1
-            color: #666
-
-            .evaluate-desc1
-              font-size: 0.28rem
-
-            .evaluate-rate1
-              font-size: 0.4rem
-              font-weight: 600
-              margin-top: 0.2rem
-
-      .evaluate-main
-        width: 100%
-        margin-top: 0.2rem
-        background-color #fff
-        color: #666
-
-        .evaluate-tag-wrap
-          padding: 0.3rem
-
-          .evaluate-tag
-            padding: 0.2rem
-            margin: 0.1rem
-            border-radius: 0.06rem
-            display: inline-block
-
-          .tag-pos
-            background-color: #ebf5ff
-
-          .tag-neg
-            background-color: #eee
-
-        .evaluate-show
-          line-height: 0.6rem
-          padding: 0 0.3rem
-          font-size: 0.28rem
-
-          .evaluate-icon
-            margin-right: 0.1rem
-
-          .enEva
-            color: $bgColor
-
-          .disEva
-            color: #eee
-
-        .evaluate-list
-          .evaluate-li
-            padding: 0.3rem
+          .evaluate-head-left
+            width: 45%
             display: flex
 
-            .list-left
-              width: 0.8rem
+            .evaluate-head-wrap
+              width: 100%
+              margin: 0.4rem 0
+              border-right: 0.02rem solid #eee
+              box-sizing: border-box
 
-              .list-pic
-                width: 0.6rem
-                height: 0.6rem
-                border-radius: 50%
-                background-size: 0.6rem
-                background-image: url('http://shadow.elemecdn.com/faas/h5/static/sprite.3ffb5d8.png')
-
-            .list-right
-              flex: 1
-
-              .list-info
-                font-size: 0.24rem
+              .evaluate-head-main
                 display: flex
-                justify-content: space-between
+                justify-content: center
 
-                .list-date
-                  color: #999
+                .evaluate-rate0
+                  font-size: 0.8rem
+                  color: #f60
 
-              .list-star
-                font-size: 0.24rem
-                margin-top: 0.1rem
+                .evaluate-desc
+                  margin-left: 0.2rem
+                  line-height: 0.4rem
 
-              .list-desc
-                line-height: 0.36rem
-                margin-top: 0.2rem
+                  .evaluate-desc0
+                    font-size: 0.28rem
+
+                  .evaluate-star
+                    font-size: 0.28rem
+
+          .evaluate-head-right
+            width: 55%
+            padding: 0.4rem 0
+            text-align: center
+            display: flex
+
+            .evaluate-class
+              flex: 1
+              color: #666
+
+              .evaluate-desc1
                 font-size: 0.28rem
-                word-break: normal
-                word-wrap: break-word
+
+              .evaluate-rate1
+                font-size: 0.4rem
+                font-weight: 600
+                margin-top: 0.2rem
+
+        .evaluate-main
+          width: 100%
+          margin-top: 0.2rem
+          background-color #fff
+          color: #666
+
+          .evaluate-tag-wrap
+            padding: 0.3rem
+
+            .evaluate-tag
+              padding: 0.2rem
+              margin: 0.1rem
+              border-radius: 0.06rem
+              display: inline-block
+
+            .tag-pos
+              background-color: #ebf5ff
+
+            .tag-pos-active
+              background-color: $bgColor
+              color: #fff
+
+            .tag-neg
+              background-color: #eee
+
+            .tag-neg-active
+              background-color: #ccc
+              color: #fff
+
+          .evaluate-show
+            line-height: 0.6rem
+            padding: 0 0.3rem
+            font-size: 0.28rem
+
+            .evaluate-icon
+              margin-right: 0.1rem
+
+            .enEva
+              color: #eee
+
+            .disEva
+              color: $bgColor
+
+          .evaluate-list
+            .evaluate-li
+              padding: 0.3rem
+              display: flex
+
+              .list-left
+                width: 0.8rem
+
+                .list-pic
+                  width: 0.6rem
+                  height: 0.6rem
+                  border-radius: 50%
+                  background-size: 0.6rem
+
+              .list-right
+                flex: 1
+
+                .list-info
+                  font-size: 0.24rem
+                  display: flex
+                  justify-content: space-between
+
+                  .list-date
+                    color: #999
+
+                .list-star
+                  font-size: 0.24rem
+                  margin-top: 0.1rem
+
+                .list-desc
+                  line-height: 0.36rem
+                  margin-top: 0.2rem
+                  font-size: 0.28rem
+                  word-break: normal
+                  word-wrap: break-word
+
+      .brand-main
+        padding: 0.3rem
+        background-color: #fff
+
+        .brand-pic
+          width: 100%
+          height: auto
+
+        .brand-name
+          line-height: 0.6rem
+          margin-top: 0.1rem
+          font-size: 0.32rem
+          font-weight: 600
+
+        .brand-desc
+          font-size: 0.28rem
+          color: #666
 
     .cart
       position: fixed

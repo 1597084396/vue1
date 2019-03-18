@@ -14,7 +14,7 @@
               v-for="(img, page) of item.pyqImg"
               :key="page"
               :style="{backgroundImage: 'url(' + img + ')'}"
-              :class="{'sudoku-4': item.pyqImg.length == 4}"
+              :class="{'sudoku-1': item.pyqImg.length == 1, 'sudoku-4': item.pyqImg.length == 4}"
               @click="handleBannerClick(item.pyqImg, page)"
             >
             </div>
@@ -174,6 +174,10 @@ export default {
 
           .sudoku-wrap:nth-child(3n)
             margin-right: 0
+
+          .sudoku-1
+            width: 66%
+            padding-bottom: 66%
 
           .sudoku-4
             margin-right: 2% !important

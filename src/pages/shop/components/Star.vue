@@ -1,6 +1,7 @@
 <template>
   <div>
-    <span class="star" v-for="(item,index) of list" :key="index" v-html="item">{{item}}</span>
+    <span v-for="(item,index) of list" :key="index" v-html="item">{{item}}</span>
+    <span class="star-label" v-if="label">{{word}}</span>
   </div>
 </template>
 
@@ -8,7 +9,13 @@
 export default {
   name: 'star',
   props: {
-    rate: Number
+    rate: Number,
+    label: {
+      type: Boolean,
+      default () {
+        return false
+      }
+    }
   },
   computed: {
     list () {
@@ -23,6 +30,27 @@ export default {
         star.push('<span class="iconfont star-empty">&#xe66d;</span>')
       }
       return star
+    },
+    word () {
+      let word
+      switch (this.rate) {
+        case 1 :
+          word = '吐槽'
+          break
+        case 2 :
+          word = '较差'
+          break
+        case 3 :
+          word = '一般'
+          break
+        case 4 :
+          word = '满意'
+          break
+        case 5 :
+          word = '超赞'
+          break
+      }
+      return word
     }
   }
 }
@@ -36,4 +64,9 @@ export default {
   .star-empty
     color: #eee
     font-size: 0.24rem !important
+
+  .star-label
+    color: gold
+    font-size: 0.24rem !important
+    margin-left: 0.1rem
 </style>
