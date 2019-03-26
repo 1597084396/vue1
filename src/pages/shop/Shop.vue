@@ -69,10 +69,7 @@
                 <!-- 菜单内容主栏 -->
                 <ul class="menu-list">
                   <li class="menu-li" v-for="(food,index) of item.goods" :key="index">
-                    <img
-                      class="food-pic"
-                      src="http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
-                    >
+                    <img class="food-pic" :src="food.pic">
                     <div class="food">
                       <p class="food-title">{{food.title}}</p>
                       <p class="food-desc">{{food.desc}}</p>

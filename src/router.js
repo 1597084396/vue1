@@ -12,7 +12,6 @@ import Error from './pages/error/Error'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   linkActiveClass: 'active',
   routes: [
     {

@@ -23,24 +23,27 @@
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 12.99,
-        "num": 0
+        "price": 50.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }, {
         "id": "1002",
-        "title": "脆皮鸡烤肉拌饭",
-        "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
+        "title": "椰丝鸡柳套餐",
+        "desc": "椰丝鸡柳+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 36.99,
-        "num": 0
+        "price": 47.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/f/f9/d563bd385d1e6537f70c73f96e678jpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }, {
         "id": "1003",
-        "title": "麦香鸡腿堡",
-        "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
+        "title": "盐酥鸡套餐",
+        "desc": "盐酥鸡+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 9.99,
-        "num": 0
+        "price": 47.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/6/d1/df563731e4f3bf4251e9b271fecf8jpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }]
     }, {
       "type": "热销",
@@ -51,7 +54,8 @@
         "sale": 351,
         "rate": 100, 
         "price": 12.99,
-        "num": 0
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }]
     }, {
       "type": "口味自选",
@@ -61,8 +65,9 @@
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 12.99,
-        "num": 0
+        "price": 8.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }, {
         "id": "1006",
         "title": "脆皮鸡排套餐",
@@ -70,7 +75,8 @@
         "sale": 351,
         "rate": 100, 
         "price": 12.99,
-        "num": 0
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }]
     }, {
       "type": "1~10元"
@@ -96,32 +102,36 @@
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 12.99,
-        "num": 0
+        "price": 52.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }, {
         "id": "1008",
         "title": "脆皮鸡排套餐",
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 12.99,
-        "num": 0
+        "price": 52.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }, {
         "id": "1009",
         "title": "脆皮鸡排套餐",
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 10.00,
-        "num": 0
+        "price": 54.00,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }, {
         "id": "1010",
         "title": "脆皮鸡排套餐",
         "desc": "脆皮鸡排+小吃+饮品小吃、饮品可选",
         "sale": 351,
         "rate": 100, 
-        "price": 12.99,
-        "num": 0
+        "price": 54.99,
+        "num": 0,
+        "pic": "http://fuss10.elemecdn.com/4/93/289f874307e074bb7e1e41ecbddaajpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
       }]
     }],
     "tag": [{
