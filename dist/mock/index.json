@@ -1,0 +1,89 @@
+{
+  "ret": true,
+  "data":{
+    "city": "北京",
+    "swiperList": [{
+      "id": "0001",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1812/48/5713e2a2ba72f902.jpg_750x200_2b382dac.jpg"
+    }, {
+      "id": "0002",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1812/d1/cd4f32e924a5a302.jpg_750x200_3d492837.jpg"
+    }, {
+      "id": "0003",
+      "imgUrl": "http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20191/6bdcd1e29c06886d56ed847cd3f75ef6.jpg_750x200_9387edb7.jpg"
+    }],
+    "iconList": [{
+      "id": "0001",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
+      "link": "",
+      "desc": "热门景点"
+    }, {
+      "id": "0002",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png",
+      "link": "",
+      "desc": "一日游"
+    }, {
+      "id": "0003",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png",
+      "link": "",
+      "desc": "迪士尼"
+    }, {
+      "id": "0004",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/e3/67df61427c8e1302.png",
+      "link": "shop",
+      "desc": "饿了么"
+    }, {
+      "id": "0005",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png",
+      "link": "",
+      "desc": "动植物园"
+    }, {
+      "id": "0006",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/6c/9e54a8540fee0102.png",
+      "link": "",
+      "desc": "故宫"
+    }, {
+      "id": "0007",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/47/c2b659e048b11602.png",
+      "link": "",
+      "desc": "游乐园"
+    }, {
+      "id": "0008",
+      "imgUrl": "http://img1.qunarzz.com/piao/fusion/1803/fc/b10a6b2e4f0fe102.png",
+      "link": "",
+      "desc": "滑雪场"
+    }],
+    "recommendList": [{
+      "id": "0001",
+      "imgUrl": "http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg",
+      "title": "故宫",
+      "desc": "东城区"
+    }, {
+      "id": "0002",
+      "imgUrl": "http://img1.qunarzz.com/sight/p0/1708/2b/2b3b94de99c0a425a3.img.jpg",
+      "title": "八达岭长城",
+      "desc": "延庆县"
+    }, {
+      "id": "0003",
+      "imgUrl": "http://img1.qunarzz.com/sight/p0/1602/68/68aa05adb5315f9990.water.jpg",
+      "title": "海洋馆",
+      "desc": "西城区"
+    }],
+    "weekendList": [{
+      "id": "0001",
+      "imgUrl": "http://img1.qunarzz.com/sight/source/1811/f3/86173f863bef61.jpg_r_640x214_52b003ac.jpg",
+      "title": "京城周末撒欢",
+      "desc": "在帝都过周末，不仅仅是城中游！"
+    }, {
+      "id": "0002",
+      "imgUrl": "http://img1.qunarzz.com/sight/p0/1708/2b/2b3b94de99c0a425a3.img.jpg",
+      "title": "八达岭长城",
+      "desc": "延庆县"
+    }, {
+      "id": "0003",
+      "imgUrl": "http://img1.qunarzz.com/sight/p0/1602/68/68aa05adb5315f9990.water.jpg",
+      "title": "海洋馆",
+      "desc": "西城区"
+    }]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "ret": true,
+  "data": {
+    "id": "0001",
+    "sightName": "故宫",
+    "bannerImg": "http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg",
+    "gallaryImgs": ["http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg", "http://img1.qunarzz.com/wugc/p123/201211/19/a2045d091f02b25493835fbb.png"],
+    "categoryList": [{
+        "title": "成人票",
+        "children": [{
+          "title": "成人三馆联票",
+          "price": "40"
+        },{
+          "title": "成人五馆联票",
+          "price": "50"
+        }]
+      }, {
+        "title": "学生票",
+        "price": "30"
+      }, {
+        "title": "儿童票",
+        "price": "20"
+      }, {
+        "title": "特惠票",
+        "price": "35"
+      }]
+  }
+}
