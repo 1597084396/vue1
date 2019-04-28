@@ -14,7 +14,8 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        // target: 'http://localhost:8080',
+        target: 'https://wzbus.github.io/vue-set/#/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/mock'
