@@ -294,7 +294,7 @@ export default {
   },
   methods: {
     getMenuInfo () {
-      axios.get('/api/menu.json').then(this.handleGetDataSucc)
+      axios.get('https://www.wzbus.xyz/set/api/menu.json').then(this.handleGetDataSucc)
     },
     handleGetDataSucc (res) {
       res = res.data

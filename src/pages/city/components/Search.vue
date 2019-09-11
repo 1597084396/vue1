@@ -96,7 +96,7 @@ export default {
   overflow: hidden
   position: absolute
   top: 1.58rem
-  rigth: 0
+  right: 0
   left: 0
   bottom: 0
   background: #eee

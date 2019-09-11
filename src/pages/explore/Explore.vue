@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getPyqInfo () {
-      axios.get('/api/pyq.json').then(this.getPyqInfoSucc)
+      axios.get('https://www.wzbus.xyz/set/api/pyq.json').then(this.getPyqInfoSucc)
     },
     getPyqInfoSucc (res) {
       res = res.data

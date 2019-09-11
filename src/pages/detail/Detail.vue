@@ -34,7 +34,7 @@ export default {
   methods: {
     getDetailInfo () {
       axios
-        .get('/api/detail.json?id=', {
+        .get('https://www.wzbus.xyz/set/api/detail.json?id=', {
           params: {
             id: this.$route.params.id
           }

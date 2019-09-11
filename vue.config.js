@@ -10,16 +10,16 @@ module.exports = {
       .set('@', resolve('src'))
       .set('style', resolve('src/assets/style'))
       .set('common', resolve('src/common'))
-  },
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/mock'
-        }
-      }
-    }
   }
+  // devServer: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:8080',
+  //       changeOrigin: true,
+  //       pathRewrite: {
+  //         '^/api': '/mock'
+  //       }
+  //     }
+  //   }
+  // }
 }
